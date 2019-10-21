@@ -21,7 +21,7 @@ const pgClient = new Pool({
 
 pgClient.on('error', () => console.log('Lost PG connsection'));
 
-pgClient.query('CREATE TABLE IF NOT EXIST values (number INT)')
+pgClient.query('CREATE TABLE IF NOT EXISTS values (number INT)')
 	.catch(err => console.log(err));
 	
 // Redis Client Setup
