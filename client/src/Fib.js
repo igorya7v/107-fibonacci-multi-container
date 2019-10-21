@@ -47,7 +47,7 @@ class Fib extends Component {
 		// prevent the form from submitting itself
 		event.preventDefault();
 		
-		await axious.post('/api/values', {
+		await axios.post('/api/values', {
 			index: this.state.index
 		});
 		
