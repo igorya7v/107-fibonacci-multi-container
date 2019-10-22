@@ -9,16 +9,22 @@ script:
     - docker run -e CI=true react-tests npm run test
     
 after_success:
-    - docker build -t igory/react-client ./client
-    - docker build -t igory/express-server ./express-server
-    - docker build -t igory/nginx ./nginx
-    - docker build -t igory/worker ./worker
+    - docker build -t react-client ./client
+    - docker build -t express-server ./express-server
+    - docker build -t nginx ./nginx
+    - docker build -t worker ./worker
     
     # Log in to the docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     
+    # update the tag to match the docker repo
+    - docker tag react-client igorya5v/react-client
+    - docker tag express-server igorya5v/express-server
+    - docker tag nginx igorya5v/nginx
+    - docker tag worker igorya5v/worker
+    
     # Take those images and push them to docker hub
-    - docker push igory/react-client
-    - docker push igory/express-server
-    - docker push igory/nginx
-    - docker push igory/worker
+    - docker push igorya5v/react-client
+    - docker push igorya5v/express-server
+    - docker push igorya5v/nginx
+    - docker push igorya5v/worker
