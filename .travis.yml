@@ -18,13 +18,13 @@ after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     
     # update the tag to match the docker repo
-    - docker tag react-client igorya5v/react-client
-    - docker tag express-server igorya5v/express-server
-    - docker tag nginx igorya5v/nginx
-    - docker tag worker igorya5v/worker
+    - docker tag react-client "$DOCKER_ID"/react-client
+    - docker tag express-server "$DOCKER_ID"/express-server
+    - docker tag nginx "$DOCKER_ID"/nginx
+    - docker tag worker "$DOCKER_ID"/worker
     
     # Take those images and push them to docker hub
-    - docker push igorya5v/react-client
-    - docker push igorya5v/express-server
-    - docker push igorya5v/nginx
-    - docker push igorya5v/worker
+    - docker push "$DOCKER_ID"/react-client
+    - docker push "$DOCKER_ID"/express-server
+    - docker push "$DOCKER_ID"/nginx
+    - docker push "$DOCKER_ID"/worker
