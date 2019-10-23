@@ -1,0 +1,34 @@
+{
+	"AWSEBDockerrunVersion": 2,
+	"containerDefinitions": [
+		{
+			"name": "react-client",
+			"image": "igorya5v/react-client",
+			"hostname": "react-client",
+			"essential": false
+		},
+		{
+			"name": "express-server",
+			"image": "igorya5v/express-server",
+			"hostname": "express-server",
+			"essential": false
+		},
+		{
+			"name": "worker",
+			"image": "igorya5v/worker",
+			"essential": false
+		},
+		{
+			"name": "nginx",
+			"image": "igorya5v/nginx",
+			"essential": true,
+			"portMappings": [
+				{
+					"hostPort": 80,
+					"containerPort": 80
+				}
+			],
+			"links": ["react-client", "express-server"]
+		}
+	]
+}
